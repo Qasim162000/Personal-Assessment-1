@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TableEntry } from "./TableEntry";
 
-
 interface EmployeeFormProps {}
 
 export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
