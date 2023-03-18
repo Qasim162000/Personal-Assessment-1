@@ -8,7 +8,7 @@ interface TableEntryProps {
   email: any;
   salary: any;
   date: any;
-  mykey: any;
+  indexing: any;
 }
 
 export const TableEntry: React.FC<TableEntryProps> = (props) => {
@@ -46,7 +46,7 @@ export const TableEntry: React.FC<TableEntryProps> = (props) => {
               <tbody>
                 <tr className="dark:border-neutral-500">
                   <td className="whitespace-nowrap px-6 py-4 font-medium">
-                    {props.mykey}
+                    {props.indexing}
                   </td>
                   <td className="font-normal whitespace-nowrap px-6 py-4">
                     {props.firstname}

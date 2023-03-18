@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+import EntryContext from "./context/EntryContext";
 
 interface TableBodyProps {
-  mykey?: any;
+  indexing?: any;
   firstname?: any;
   lastname?: any;
   email?: any;
   salary?: any;
   date?: any;
+  secretKey?: any;
 }
 
 export const TableBody: React.FC<TableBodyProps> = (props) => {
+  const { deleteEntry } = useContext(EntryContext);
+
   return (
     <tbody>
       <tr className="dark:border-neutral-500">
         <td className="whitespace-nowrap px-6 py-4 font-medium">
-          {props.mykey}
+          {props.indexing}
         </td>
         <td className="font-normal whitespace-nowrap px-6 py-4">
           {props.firstname}
@@ -37,7 +41,10 @@ export const TableBody: React.FC<TableBodyProps> = (props) => {
           </button>{" "}
           <button
             className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
-            // onClick={handleDelete}
+            onClick={() => {
+              console.log(props.secretKey);
+              deleteEntry(props.secretKey);
+            }}
           >
             Delete
           </button>
