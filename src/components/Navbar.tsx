@@ -66,7 +66,8 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                   className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                   aria-current="page"
                 >
-                  CRUD Operation on Table using Tailwind with TypeScript (Frontend only)
+                  CRUD Operation on Table using Tailwind with TypeScript
+                  (Frontend only)
                 </a>
               </div>
             </div>
@@ -79,10 +80,11 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
         <div className="space-y-1 px-2 pt-2 pb-3">
           <a
             href="#"
-            className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+            className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium text-center"
             aria-current="page"
           >
-            CRUD Table (Frontend)
+            CRUD Operation on Table using Tailwind with TypeScript (Frontend
+            only)
           </a>
         </div>
       </div>
