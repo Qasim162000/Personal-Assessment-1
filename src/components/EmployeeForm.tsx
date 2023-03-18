@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { TableEntry } from "./TableEntry";
+import React, { useContext, useState } from "react";
+import EntryContext from "./context/EntryContext";
+import { TableBody } from "./TableBody";
 
 interface EmployeeFormProps {}
 
 export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
-  const entry: any = [];
-  const [entries, setEntries] = useState(entry);
-
+  const { entries, setEntries } = useContext(EntryContext);
   const [details, setDetails] = useState({
     mykey: "",
     firstname: "",
@@ -19,8 +18,8 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
   const handleOnSubmit = (Event: any) => {
     Event.preventDefault();
     setEntries(entries.concat(details));
-    // console.log(details);
-    // console.log(entry);
+    console.log(details);
+    console.log(entries);
     setDetails({
       mykey: "",
       firstname: "",
@@ -142,7 +141,87 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
           </div>
         </form>
       </div>
-      {entries.map((entry: any, index: any) => {
+      <div className="flex flex-col">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div className="overflow-hidden">
+              <table className="min-w-full text-left text-sm font-light">
+                <thead className="border-b font-medium dark:border-neutral-500">
+                  <tr>
+                    <th scope="col" className="px-6 py-4">
+                      No.
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      First Name
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Last Name
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Email
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Salary
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Date
+                    </th>
+                    <th scope="col" className="px-6 text-center py-4">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                {entries.map((entry: any, index: any) => {
+                  return (
+                    <TableBody
+                      mykey={index}
+                      firstname={entry.firstname}
+                      lastname={entry.lastname}
+                      email={entry.email}
+                      salary={entry.salary}
+                      date={entry.date}
+                    />
+                  );
+                })}
+                {/* <tbody>
+                <tr className="dark:border-neutral-500">
+                  <td className="whitespace-nowrap px-6 py-4 font-medium">
+                    {props.mykey}
+                  </td>
+                  <td className="font-normal whitespace-nowrap px-6 py-4">
+                    {props.firstname}
+                  </td>
+                  <td className="font-normal whitespace-nowrap px-6 py-4">
+                    {props.lastname}
+                  </td>
+                  <td className="font-normal whitespace-nowrap px-6 py-4">
+                    {props.email}
+                  </td>
+                  <td className="font-normal whitespace-nowrap px-6 py-4">
+                    ${props.salary}
+                  </td>
+                  <td className="font-normal whitespace-nowrap px-6 py-4">
+                    {props.date}
+                  </td>
+                  <td className="font-normal whitespace-nowrap px-6 py-4 text-center">
+                    <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                      Edit
+                    </button>{" "}
+                    <button
+                      className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+                      // onClick={handleDelete}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody> */}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* {entries.map((entry: any, index: any) => {
         return (
           <TableEntry
             key={index}
@@ -154,7 +233,7 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
             date={entry.date}
           />
         );
-      })}
+      })} */}
     </>
   );
 };

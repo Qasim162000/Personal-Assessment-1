@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // import { TableData } from "./TableData";
 // import { TableHeader } from "./TableHeader";
 
@@ -12,10 +12,6 @@ interface TableEntryProps {
 }
 
 export const TableEntry: React.FC<TableEntryProps> = (props) => {
-  const handleDelete = (id: any) => {
-    
-  };
-
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -73,7 +69,7 @@ export const TableEntry: React.FC<TableEntryProps> = (props) => {
                     </button>{" "}
                     <button
                       className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
-                      onClick={handleDelete}
+                      // onClick={handleDelete}
                     >
                       Delete
                     </button>
