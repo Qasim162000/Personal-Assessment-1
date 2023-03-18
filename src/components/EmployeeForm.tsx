@@ -1,41 +1,48 @@
 import React, { useContext, useRef, useState } from "react";
+import { AddEmployeeForm } from "./AddEmployeeForm";
 import EntryContext from "./context/EntryContext";
 import { TableBody } from "./TableBody";
 
 interface EmployeeFormProps {}
 
 export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
+  const { entries, editEntry } = useContext(EntryContext);
   const ref = useRef<any>(null);
-  const refClose = useRef<any>(null);
-
-  const updateEntry = (currentEntry: any) => {
-    ref.current.click();
-  };
-
-  const { entries, setEntries } = useContext(EntryContext);
   const [details, setDetails] = useState({
-    indexing: "",
-    firstname: "",
-    lastname: "",
-    email: "",
-    salary: "",
-    date: "",
-    secretKey: "",
+    eindexing: "",
+    efirstname: "",
+    elastname: "",
+    eemail: "",
+    esalary: "",
+    edate: "",
+    esecretKey: "",
   });
 
   const handleOnSubmit = (Event: any) => {
     Event.preventDefault();
-    setEntries(entries.concat(details));
+    editEntry(
+      details.efirstname,
+      details.elastname,
+      details.eemail,
+      details.esalary,
+      details.edate
+    );
+    ref.current.click();
+
+    alert("Employee Details Edited Successfully");
+  };
+
+  const updateEntry = (currentEntry: any) => {
+    ref.current.click();
     setDetails({
-      indexing: "",
-      firstname: "",
-      lastname: "",
-      email: "",
-      salary: "",
-      date: "",
-      secretKey: "",
+      eindexing: currentEntry.indexing,
+      efirstname: currentEntry.firstname,
+      elastname: currentEntry.lastname,
+      eemail: currentEntry.email,
+      esalary: currentEntry.salary,
+      edate: currentEntry.date,
+      esecretKey: currentEntry.secreyKey,
     });
-    alert("Employee Added Successfully");
   };
 
   const onChange = (Event: any) => {
@@ -47,6 +54,7 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
 
   return (
     <>
+      <AddEmployeeForm />
       <button
         data-modal-target="defaultModal"
         data-modal-toggle="defaultModal"
@@ -75,15 +83,15 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm text-white font-bold mb-2"
-                htmlFor="firstname"
+                htmlFor="efirstname"
               >
                 First Name
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="firstname"
-                name="firstname"
-                value={details.firstname}
+                id="efirstname"
+                name="efirstname"
+                value={details.efirstname}
                 type="text"
                 onChange={onChange}
                 required
@@ -98,10 +106,10 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="lastname"
-                name="lastname"
+                id="elastname"
+                name="elastname"
                 type="text"
-                value={details.lastname}
+                value={details.elastname}
                 onChange={onChange}
                 required
               />
@@ -116,10 +124,10 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="email"
-                name="email"
+                name="eemail"
                 type="email"
                 placeholder="xyz@gmail.com"
-                value={details.email}
+                value={details.eemail}
                 onChange={onChange}
                 required
               />
@@ -133,9 +141,9 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="salary"
-                name="salary"
-                value={details.salary}
+                id="esalary"
+                name="esalary"
+                value={details.esalary}
                 type="text"
                 onChange={onChange}
                 required
@@ -150,10 +158,10 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
               </label>
               <input
                 className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="date"
-                name="date"
+                id="edate"
+                name="edate"
                 type="date"
-                value={details.date}
+                value={details.edate}
                 onChange={onChange}
                 required
               />
@@ -167,116 +175,16 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
               </button>
               <button
                 className="mx-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
+                data-modal-toggle="defaultModal"
+                type="button"
               >
-                Close
+                Cancel
               </button>
             </div>
           </form>
         </div>
       </div>
 
-      <div className="w-full max-w-xs mx-auto my-5 rounded-full">
-        <form
-          className="bg-black shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          onSubmit={handleOnSubmit}
-        >
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm text-white font-bold mb-2"
-              htmlFor="firstname"
-            >
-              First Name
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="firstname"
-              name="firstname"
-              value={details.firstname}
-              type="text"
-              onChange={onChange}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm text-white font-bold mb-2"
-              htmlFor="lastname"
-            >
-              Last Name
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="lastname"
-              name="lastname"
-              type="text"
-              value={details.lastname}
-              onChange={onChange}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm text-white font-bold mb-2"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="xyz@gmail.com"
-              value={details.email}
-              onChange={onChange}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm text-white font-bold mb-2"
-              htmlFor="salary"
-            >
-              Salary
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="salary"
-              name="salary"
-              value={details.salary}
-              type="text"
-              onChange={onChange}
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-white text-gray-700 text-sm font-bold mb-2"
-              htmlFor="date"
-            >
-              Date
-            </label>
-            <input
-              className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="date"
-              name="date"
-              type="date"
-              value={details.date}
-              onChange={onChange}
-              required
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Add Employee
-            </button>
-          </div>
-        </form>
-      </div>
       {entries.length === 0 ? (
         <h1 className="text-center text-3xl font-bold mt-6">
           No Entries in the Table

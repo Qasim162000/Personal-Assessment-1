@@ -27,8 +27,9 @@ export const EntryState: React.FC<EntryStateProps> = (props) => {
         entries[index].date = date;
         break;
       }
-      setEntries(entries);
     }
+    let newentry = entries.slice();
+    setEntries(newentry);
   };
 
   //Delete Employee info from table
