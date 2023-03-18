@@ -11,11 +11,8 @@ export const EntryState: React.FC<EntryStateProps> = (props) => {
 
   const deleteEntry = (id: any) => {
     const newEntries = entries.filter((entry: any) => {
-      // console.log("Log Deleted successfully" + entry);
-      return entry.firstname !== id;
+      return entry.email !== id;
     });
-    console.log("wow " + JSON.stringify(newEntries));
-
     const newEntriesSet = setEntries(newEntries);
   };
 

@@ -180,7 +180,7 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
                     return (
                       <TableBody
                         indexing={index + 1}
-                        secretKey={entry.firstname}
+                        secretKey={entry.email}
                         key={index}
                         firstname={entry.firstname}
                         lastname={entry.lastname}
