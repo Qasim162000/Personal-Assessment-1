@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import EntryContext from "./context/EntryContext";
 
 interface TableBodyProps {
@@ -9,10 +9,11 @@ interface TableBodyProps {
   salary?: any;
   date?: any;
   secretKey?: any;
+  updateEntry?: any;
+  entry?: any;
 }
 
 export const TableBody: React.FC<TableBodyProps> = (props) => {
-  // const first = useRef(null)
   const { deleteEntry, editEntry } = useContext(EntryContext);
 
   return (
@@ -41,13 +42,7 @@ export const TableBody: React.FC<TableBodyProps> = (props) => {
             <button
               className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               onClick={() => {
-                editEntry(
-                  props.firstname,
-                  props.lastname,
-                  props.email,
-                  props.salary,
-                  props.date
-                );
+                props.updateEntry(props.entry);
               }}
             >
               Edit
