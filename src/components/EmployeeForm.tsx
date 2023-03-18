@@ -4,16 +4,7 @@ import { TableEntry } from "./TableEntry";
 interface EmployeeFormProps {}
 
 export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
-  const entry = [
-    {
-      mykey: "0",
-      firstname: "Qasim",
-      lastname: "Daud",
-      email: "q@gmail.com",
-      salary: "45999",
-      date: "12/21/12",
-    },
-  ];
+  const entry: any = [];
   const [entries, setEntries] = useState(entry);
 
   const [details, setDetails] = useState({
@@ -28,8 +19,8 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
   const handleOnSubmit = (Event: any) => {
     Event.preventDefault();
     setEntries(entries.concat(details));
-    console.log(details);
-    console.log(entry);
+    // console.log(details);
+    // console.log(entry);
     setDetails({
       mykey: "",
       firstname: "",
@@ -151,7 +142,7 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({}) => {
           </div>
         </form>
       </div>
-      {entries.map((entry, index) => {
+      {entries.map((entry: any, index: any) => {
         return (
           <TableEntry
             key={index}
